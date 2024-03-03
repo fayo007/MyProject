@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'dash:contact' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Jo'natish</button>
+</form>
