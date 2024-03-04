@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import ContactForm
+from . import *
 
 def contact_view(request):
     if request.method == 'POST':
@@ -11,3 +12,14 @@ def contact_view(request):
         form = ContactForm()
 
     return render(request, 'index.html', {'form': form})
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = forms.ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'success.html')
+    form = forms.ContactForm()
+    context = {'form': form}
+    return render(request, 'contacts.html', context)
